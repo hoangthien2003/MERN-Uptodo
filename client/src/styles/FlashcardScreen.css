@@ -1,0 +1,19 @@
+body {
+  background-color: #0a092d;
+  display: flex;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.headerBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: #282e3e;
+  height: 4.5rem;
+}

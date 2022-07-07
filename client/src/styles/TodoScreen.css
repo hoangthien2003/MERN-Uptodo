@@ -1,0 +1,16 @@
+body {
+  display: flex;
+  align-items: flex;
+  justify-content: flex;
+  width: 100vw;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.taskScreen::-webkit-scrollbar {
+  display: none;
+}
