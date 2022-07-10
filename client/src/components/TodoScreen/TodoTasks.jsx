@@ -20,6 +20,7 @@ export default function TodoTasks() {
           task: task,
           priority: priority,
           id: uuidv4(),
+          completed: false,
         })
       );
       setTask("");
@@ -35,7 +36,7 @@ export default function TodoTasks() {
           paddingRight: 50,
           paddingBottom: 20,
           paddingLeft: 50,
-          width: 750,
+          width: 650,
           borderRadius: 20,
         }}
       >

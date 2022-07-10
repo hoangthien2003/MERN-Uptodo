@@ -2,10 +2,10 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { completedSelector } from "../../redux/selectors";
-import Task from "../Task";
+import CompletedItem from "./CompletedItem";
 
 export default function CompletedTasks() {
-  const completedTask = useSelector(completedSelector);
+  const completedTasks = useSelector(completedSelector);
   return (
     <div className="flex items-center content-center w-screen h-screen py-3">
       <Card
@@ -16,7 +16,11 @@ export default function CompletedTasks() {
         h-full"
       >
         <h4>Completed Tasks</h4>
-        <div className="flex h-screen overflow-auto"></div>
+        <div className="flex flex-col h-screen w-full overflow-auto mt-5">
+          {completedTasks.map((todo, index) => {
+            return <CompletedItem key={index} todo={todo} id={index} />;
+          })}
+        </div>
       </Card>
     </div>
   );

@@ -7,5 +7,8 @@ export const CompletedSlice = createSlice({
     addTask: (state, action) => {
       state.push(action.payload);
     },
+    deleteTask: (state, action) => {
+      return state.filter((index) => index.id !== action.payload);
+    },
   },
 });
