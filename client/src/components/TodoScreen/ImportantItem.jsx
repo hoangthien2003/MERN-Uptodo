@@ -1,12 +1,12 @@
-import React from "react";
-import { Alert, Card, Form } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { CompletedSlice } from "../redux/components/CompletedSlice";
-import { ImportantSlice } from "../redux/components/ImportantSlice";
-import { TodoSlice } from "../redux/components/TodoSlice";
+import React, { useState } from "react";
+import { Card, Form, Alert } from "react-bootstrap";
+import { CompletedSlice } from "../../redux/components/CompletedSlice";
+import { ImportantSlice } from "../../redux/components/ImportantSlice";
+import { useDispatch } from "react-redux";
+import { TodoSlice } from "../../redux/components/TodoSlice";
 import { v4 as uuidv4 } from "uuid";
 
-export default function Task(props) {
+export default function ImportantItem(props) {
   var textDecorationLine = "none";
   var opacity = 1;
   var variant;
@@ -26,12 +26,12 @@ export default function Task(props) {
         important: important,
       })
     );
-    dispatch(TodoSlice.actions.deleteTask(id));
+    dispatch(ImportantSlice.actions.deleteTask(id));
   };
 
-  const handleImportant = (task, priority, id, completed, important) => {
+  const handleUnimportant = (task, priority, id, completed, important) => {
     dispatch(
-      ImportantSlice.actions.addTask({
+      TodoSlice.actions.addTask({
         task: task,
         priority: priority,
         id: id,
@@ -39,11 +39,11 @@ export default function Task(props) {
         important: important,
       })
     );
-    dispatch(TodoSlice.actions.deleteTask(id));
+    dispatch(ImportantSlice.actions.deleteTask(id));
   };
 
   return (
-    <div>
+    <div className="w-full">
       <Card
         style={{
           display: "flex",
@@ -51,12 +51,13 @@ export default function Task(props) {
           alignItems: "center",
           paddingTop: 10,
           paddingBottom: 10,
-          paddingLeft: 20,
+          paddingLeft: 10,
           paddingRight: 20,
           marginBottom: 10,
+          borderRadius: 8,
         }}
       >
-        <Form.Check>
+        <Form.Check className="flex items-center">
           <Form.Check.Input
             type="checkbox"
             checked={props.todo.completed}
@@ -69,9 +70,11 @@ export default function Task(props) {
                 props.todo.important
               );
             }}
+            className="text-lg"
           />
           <Form.Check.Label
             style={{ textDecorationLine: textDecorationLine, opacity: opacity }}
+            className="text-base ml-3"
           >
             {props.todo.task}
           </Form.Check.Label>
@@ -87,25 +90,29 @@ export default function Task(props) {
             marginBottom: 0,
             marginRight: 20,
           }}
+          className="text-sm"
         >
           {props.todo.priority}
         </Alert>
         <div
           onClick={() => {
-            dispatch(TodoSlice.actions.deleteTask(props.todo.id));
+            dispatch(ImportantSlice.actions.deleteTask(props.todo.id));
           }}
         >
-          <i class="bi bi-trash" style={{ cursor: "pointer" }}></i>
+          <i
+            class="bi bi-trash"
+            style={{ cursor: "pointer", fontSize: 18 }}
+          ></i>
         </div>
         <div
-          className="ml-3 cursor-pointer"
+          className="ml-3 cursor-pointer text-lg"
           onClick={() =>
-            handleImportant(
+            handleUnimportant(
               props.todo.task,
               props.todo.priority,
               props.todo.id,
               props.todo.completed,
-              true
+              false
             )
           }
         >

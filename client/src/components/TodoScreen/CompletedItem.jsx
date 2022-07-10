@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { Card, Form, Alert } from "react-bootstrap";
 import { CompletedSlice } from "../../redux/components/CompletedSlice";
-import { completedSelector } from "../../redux/selectors";
 import { useDispatch } from "react-redux";
 import { TodoSlice } from "../../redux/components/TodoSlice";
-import { v4 as uuidv4 } from "uuid";
+import { ImportantSlice } from "../../redux/components/ImportantSlice";
 
 export default function CompletedItem(props) {
-  const [isImportant, setImportant] = useState(false);
   var textDecorationLine = "none";
   var opacity = 1;
   var variant;
@@ -22,16 +20,30 @@ export default function CompletedItem(props) {
   else if (props.todo.priority === "Medium") variant = "warning";
   else variant = "info";
 
-  const handleIncomplete = (task, priority, id, completed) => {
-    dispatch(
-      TodoSlice.actions.addTask({
-        task: task,
-        priority: priority,
-        id: id,
-        completed: completed,
-      })
-    );
-    dispatch(CompletedSlice.actions.deleteTask(id));
+  const handleIncomplete = (task, priority, id, completed, important) => {
+    if (important) {
+      dispatch(
+        ImportantSlice.actions.addTask({
+          task: task,
+          priority: priority,
+          id: id,
+          completed: completed,
+          important: important,
+        })
+      );
+      dispatch(CompletedSlice.actions.deleteTask(id));
+    } else {
+      dispatch(
+        TodoSlice.actions.addTask({
+          task: task,
+          priority: priority,
+          id: id,
+          completed: completed,
+          important: important,
+        })
+      );
+      dispatch(CompletedSlice.actions.deleteTask(id));
+    }
   };
 
   return (
@@ -58,7 +70,8 @@ export default function CompletedItem(props) {
                 props.todo.task,
                 props.todo.priority,
                 props.todo.id,
-                false
+                false,
+                props.todo.important
               );
             }}
             className="text-lg"
@@ -95,11 +108,8 @@ export default function CompletedItem(props) {
             style={{ cursor: "pointer", fontSize: 18 }}
           ></i>
         </div>
-        <div
-          className="ml-3 cursor-pointer text-lg"
-          onClick={() => setImportant(!isImportant)}
-        >
-          {isImportant ? (
+        <div className="ml-3 cursor-pointer text-lg">
+          {props.todo.important ? (
             <i class="bi bi-star-fill"></i>
           ) : (
             <i class="bi bi-star"></i>

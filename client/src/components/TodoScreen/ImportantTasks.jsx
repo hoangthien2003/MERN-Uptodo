@@ -1,7 +1,11 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { importantSelector } from "../../redux/selectors";
+import ImportantItem from "./ImportantItem";
 
 export default function ImportantTasks() {
+  const importantTasks = useSelector(importantSelector);
   return (
     <div className="flex items-center content-center w-screen h-screen py-3">
       <Card
@@ -11,7 +15,11 @@ export default function ImportantTasks() {
         "
       >
         <h4>Important Tasks</h4>
-        <div className="flex h-95 py-3.5"></div>
+        <div className="flex flex-col h-screen w-full overflow-auto mt-5">
+          {importantTasks.map((todo, index) => {
+            return <ImportantItem key={index} todo={todo} id={index} />;
+          })}
+        </div>
       </Card>
     </div>
   );

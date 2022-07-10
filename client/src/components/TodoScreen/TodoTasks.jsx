@@ -21,6 +21,7 @@ export default function TodoTasks() {
           priority: priority,
           id: uuidv4(),
           completed: false,
+          important: false,
         })
       );
       setTask("");
