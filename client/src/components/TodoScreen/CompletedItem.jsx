@@ -108,7 +108,7 @@ export default function CompletedItem(props) {
             style={{ cursor: "pointer", fontSize: 18 }}
           ></i>
         </div>
-        <div className="ml-3 cursor-pointer text-lg">
+        <div className="ml-3 text-lg opacity-60">
           {props.todo.important ? (
             <i class="bi bi-star-fill"></i>
           ) : (
