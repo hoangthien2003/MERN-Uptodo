@@ -1,12 +1,18 @@
 import React from "react";
 import { useState } from "react";
 import { Alert, Card, Form } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { TodoSlice } from "../redux/components/TodoSlice";
+import { todosSelector } from "../redux/selectors";
 
 export default function Task(props) {
   const [isChecked, setIsChecked] = useState(false);
+  const [isImportant, setImportant] = useState(false);
   var textDecorationLine = "none";
   var opacity = 1;
   var variant;
+  const dispatch = useDispatch();
+  const todosRedux = useSelector(todosSelector);
 
   if (isChecked) {
     textDecorationLine = "line-through";
@@ -16,8 +22,8 @@ export default function Task(props) {
     opacity = 1;
   }
 
-  if (props.todo.priorities === "High") variant = "danger";
-  else if (props.todo.priorities === "Medium") variant = "warning";
+  if (props.todo.priority === "High") variant = "danger";
+  else if (props.todo.priority === "Medium") variant = "warning";
   else variant = "info";
 
   return (
@@ -43,7 +49,7 @@ export default function Task(props) {
           <Form.Check.Label
             style={{ textDecorationLine: textDecorationLine, opacity: opacity }}
           >
-            {props.todo.tasks}
+            {props.todo.task}
           </Form.Check.Label>
         </Form.Check>
         <Alert
@@ -58,10 +64,24 @@ export default function Task(props) {
             marginRight: 20,
           }}
         >
-          {props.todo.priorities}
+          {props.todo.priority}
         </Alert>
-        <div onClick={() => props.removeTodo()}>
+        <div
+          onClick={() => {
+            dispatch(TodoSlice.actions.deleteTask(props.todo.id));
+          }}
+        >
           <i class="bi bi-trash" style={{ cursor: "pointer" }}></i>
+        </div>
+        <div
+          className="ml-3 cursor-pointer"
+          onClick={() => setImportant(!isImportant)}
+        >
+          {isImportant ? (
+            <i class="bi bi-star-fill"></i>
+          ) : (
+            <i class="bi bi-star"></i>
+          )}
         </div>
       </Card>
     </div>

@@ -7,28 +7,45 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   GithubAuthProvider,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { LoginSlice } from "../redux/components/LoginSlice";
 
 export default function LoginScreen() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showMatchLogin, setShowMatchLogin] = useState(false);
+  const [showError, setShowError] = useState("");
 
   const auth = getAuth();
   const dispatch = useDispatch();
 
-  const handleLoginUsernamePassword = (e) => {
-    e.preventDefault();
+  // const handleLoginUsernamePassword = (e) => {
+  //   e.preventDefault();
 
-    const storedUsername = localStorage.getItem("username");
-    const storedPassword = localStorage.getItem("password");
-    if (username === storedUsername && password === storedPassword) {
-      dispatch(LoginSlice.actions.isAuthChange(true));
-      navigate("../", { replace: true });
-    } else setShowMatchLogin(true);
+  //   const storedUsername = localStorage.getItem("username");
+  //   const storedPassword = localStorage.getItem("password");
+  //   if (username === storedUsername && password === storedPassword) {
+  //     dispatch(LoginSlice.actions.isAuthChange(true));
+  //     navigate("../", { replace: true });
+  //   } else setShowMatchLogin(true);
+  // };
+
+  const handleLoginwithEmailPassword = async (e) => {
+    e.preventDefault();
+    await signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        dispatch(LoginSlice.actions.isAuthChange(true));
+        navigate("../", { replace: true });
+        console.log(userCredential);
+      })
+      .catch((error) => {
+        console.log(error.code);
+        setShowMatchLogin(true);
+        setShowError(error.code);
+      });
   };
 
   const handleLoginwithGoogle = async (e) => {
@@ -84,17 +101,17 @@ export default function LoginScreen() {
             dismissible
             onClose={() => setShowMatchLogin(false)}
           >
-            Username/password is invalid
+            {showError}
           </Alert>
         )}
         <Form style={{ marginTop: 20 }}>
           <Form.Group>
-            <Form.Label>Username</Form.Label>
+            <Form.Label>Email</Form.Label>
             <Form.Control
-              placeholder="Type username"
+              placeholder="Type email"
               type="text"
-              onChange={(e) => setUsername(e.target.value)}
-              value={username}
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
               style={{ width: "100%" }}
             />
           </Form.Group>
@@ -114,7 +131,7 @@ export default function LoginScreen() {
             <Button
               variant="outline-primary"
               style={{ width: 100 }}
-              onClick={handleLoginUsernamePassword}
+              onClick={handleLoginwithEmailPassword}
               type="submit"
             >
               Login

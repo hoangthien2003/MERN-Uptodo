@@ -1,6 +1,5 @@
 body {
   background-color: #0a092d;
-  display: flex;
 }
 
 body::-webkit-scrollbar {

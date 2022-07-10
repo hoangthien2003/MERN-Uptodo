@@ -11,6 +11,7 @@ import "./config/firebase-config";
 import { store } from "./redux/store";
 import { Provider } from "react-redux";
 import FlashcardScreen from "./screens/FlashcardScreen";
+import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

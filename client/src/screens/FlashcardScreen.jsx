@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import HomeScreen from "../components/Flashcard Screen/HomeScreen";
+import HomeScreen from "../components/FlashcardScreen/HomeScreen";
 import "../styles/FlashcardScreen.css";
 
 export default function FlashcardScreen() {

@@ -1,12 +1,6 @@
-body {
-  display: flex;
-  align-items: flex;
-  justify-content: flex;
-  width: 100vw;
-}
-
 .container {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 }
