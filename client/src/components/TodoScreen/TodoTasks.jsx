@@ -41,10 +41,13 @@ export default function TodoTasks() {
           borderRadius: 20,
         }}
       >
-        <h1 style={{ textAlign: "center" }} className="text-4xl font-bold">
+        <h1
+          style={{ textAlign: "center" }}
+          className="text-4xl font-bold select-none"
+        >
           Todos App
         </h1>
-        <h4 className="mt-3 text-lg font-semibold">Tasks</h4>
+        <h4 className="mt-3 text-lg font-semibold select-none">Tasks</h4>
         <div
           style={{
             height: 450,

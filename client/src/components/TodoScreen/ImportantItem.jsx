@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card, Form, Alert } from "react-bootstrap";
 import { CompletedSlice } from "../../redux/components/CompletedSlice";
 import { ImportantSlice } from "../../redux/components/ImportantSlice";
 import { useDispatch } from "react-redux";
 import { TodoSlice } from "../../redux/components/TodoSlice";
-import { v4 as uuidv4 } from "uuid";
 
 export default function ImportantItem(props) {
   var textDecorationLine = "none";
@@ -74,7 +73,7 @@ export default function ImportantItem(props) {
           />
           <Form.Check.Label
             style={{ textDecorationLine: textDecorationLine, opacity: opacity }}
-            className="text-base ml-3"
+            className="text-base ml-3 select-none"
           >
             {props.todo.task}
           </Form.Check.Label>

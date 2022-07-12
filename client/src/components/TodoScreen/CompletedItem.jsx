@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card, Form, Alert } from "react-bootstrap";
 import { CompletedSlice } from "../../redux/components/CompletedSlice";
 import { useDispatch } from "react-redux";
@@ -78,7 +78,7 @@ export default function CompletedItem(props) {
           />
           <Form.Check.Label
             style={{ textDecorationLine: textDecorationLine, opacity: opacity }}
-            className="text-base ml-3"
+            className="text-base ml-3 select-none"
           >
             {props.todo.task}
           </Form.Check.Label>

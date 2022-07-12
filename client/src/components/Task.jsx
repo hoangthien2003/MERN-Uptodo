@@ -1,10 +1,9 @@
 import React from "react";
 import { Alert, Card, Form } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { CompletedSlice } from "../redux/components/CompletedSlice";
 import { ImportantSlice } from "../redux/components/ImportantSlice";
 import { TodoSlice } from "../redux/components/TodoSlice";
-import { v4 as uuidv4 } from "uuid";
 
 export default function Task(props) {
   var textDecorationLine = "none";
@@ -72,6 +71,7 @@ export default function Task(props) {
           />
           <Form.Check.Label
             style={{ textDecorationLine: textDecorationLine, opacity: opacity }}
+            className="select-none"
           >
             {props.todo.task}
           </Form.Check.Label>
@@ -87,6 +87,7 @@ export default function Task(props) {
             marginBottom: 0,
             marginRight: 20,
           }}
+          className="select-none"
         >
           {props.todo.priority}
         </Alert>

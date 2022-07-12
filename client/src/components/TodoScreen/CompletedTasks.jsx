@@ -13,7 +13,7 @@ export default function CompletedTasks() {
           backgroundColor: "#8cffbe",
         }}
         className="flex items-center px-10 py-4 text-2xl font-semibold rounded-2xl w-100 mr-2.5
-        h-full"
+        h-full select-none"
       >
         <h4>Completed Tasks</h4>
         <div className="flex flex-col h-screen w-full overflow-auto mt-5">

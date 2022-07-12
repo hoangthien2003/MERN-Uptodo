@@ -11,7 +11,7 @@ export default function ImportantTasks() {
       <Card
         style={{ backgroundColor: "#ff9197" }}
         className="flex items-center px-10 py-4 text-2xl font-semibold rounded-2xl w-100 ml-2.5
-        h-full
+        h-full select-none
         "
       >
         <h4>Important Tasks</h4>
