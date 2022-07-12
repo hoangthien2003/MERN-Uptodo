@@ -10,7 +10,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./config/firebase-config";
 import { store } from "./redux/store";
 import { Provider } from "react-redux";
-import FlashcardScreen from "./screens/FlashcardScreen";
 import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -22,7 +21,6 @@ root.render(
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/signup" element={<SignupScreen />} />
         <Route path="/todos" element={<TodoScreen />} />
-        <Route path="/flashcard" element={<FlashcardScreen />} />
       </Routes>
     </BrowserRouter>
   </Provider>

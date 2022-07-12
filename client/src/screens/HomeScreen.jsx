@@ -25,16 +25,14 @@ function HomeScreen() {
         flexDirection: "column",
       }}
     >
-      <h1 className="text-white text-5xl font-bold mt-3 select-none">UpTodo</h1>
+      <h1 className="text-black text-5xl font-bold mt-3 select-none">UpTodo</h1>
       <div className="mt-5">
         <Link to="/todos">
-          <Button variant="primary" className="mr-3 text-xl px-4 py-2">
+          <Button
+            variant="primary"
+            className="mr-3 text-xl px-4 py-2 text-slate-900"
+          >
             Todos App
-          </Button>
-        </Link>
-        <Link to="/flashcard">
-          <Button variant="secondary" className="mr-3 text-xl px-4 py-2">
-            Flash Card
           </Button>
         </Link>
       </div>

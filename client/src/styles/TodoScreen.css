@@ -3,6 +3,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  background-color: blanchedalmond;
 }
 
 .taskScreen::-webkit-scrollbar {
